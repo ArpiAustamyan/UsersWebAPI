@@ -1,24 +1,24 @@
 ﻿using backend.Models;
 using System;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace backend.Controllers
 {
     // http://localhost:50617/
 
     [RoutePrefix("api/Users")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UsersController : ApiController
     {
-
         UserManager userManager = new UserManager();
         
-
         public IHttpActionResult Get()
         {
             try
             {
                 var users = userManager.Get();
-
+               
                 return Ok(users);
             }
             catch(Exception ex)
@@ -44,6 +44,5 @@ namespace backend.Controllers
 
             return BadRequest(ModelState);
         }
-
     }
 }

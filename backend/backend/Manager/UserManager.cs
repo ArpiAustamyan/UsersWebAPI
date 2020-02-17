@@ -56,7 +56,6 @@ namespace backend
             return users;
         }
 
-
         public int Add(Model model)
         {
             int newItemId;
@@ -67,10 +66,10 @@ namespace backend
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = connection;
-                    cmd.CommandText = string.Format("insert into Users (FirstName, LastName) values ('{0}', '{1}')",model.FirstName, model.LastName);
+                    cmd.CommandText = string.Format("insert into Users (FirstName, LastName) values ('{0}', '{1}')", model.FirstName, model.LastName);
 
                     cmd.ExecuteNonQuery();
-       
+
 
                     cmd.CommandText = "SELECT SCOPE_IDENTITY()";
                     newItemId = Convert.ToInt32(cmd.ExecuteScalar());
@@ -88,5 +87,4 @@ namespace backend
             return newItemId;
         }
     }
-
 }
